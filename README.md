@@ -1,4 +1,4 @@
-# Rackneh's Jarvis
+# Rackneh's JaJaJa(rvis)
 
 A local, always-on voice AI assistant with a "conscious" foreground self and a
 background task workforce. Jarvis listens for its wake word, talks back with a
