@@ -1,0 +1,57 @@
+# ==============================================================================
+# Large files (>100MB) exceeding GitHub file size limits
+# ==============================================================================
+
+# TTS & Voice Models / Datasets (>100MB)
+jarvis_home/models/breeze/breeze-tts-2-q4_k.gguf
+jarvis_home/models/kokoro-v1.0.onnx
+jarvis_home/models/voice/jarvis-high.onnx
+jarvis_home/models/voice/jarvis-samples.parquet
+
+# General patterns for large binaries, models & datasets (fetched via download_voice_models.py)
+*.gguf
+*.onnx
+*.bin
+*.parquet
+
+# Virtual Environment & Large Packages (>100MB)
+venv/
+.venv/
+env/
+venv/Lib/site-packages/llvmlite/binding/llvmlite.dll
+venv/Lib/site-packages/11vmlite/binding/1lvmlite.dll
+venv/Lib/site-packages/torch/lib/dnnl.lib
+venv/Lib/site-packages/torch/lib/torch_cpu.dll
+venv/Lib/site-packages/~orch/lib/torch_cpu.dll
+venv/Lib/site-packages/~-rch/lib/torch_cpu.dll
+venv/Lib/site-packages/~*/
+
+# ==============================================================================
+# Local Runtime State & Caches
+# ==============================================================================
+jarvis_home/cache/
+jarvis_home/tasks/
+jarvis_home/iba_runtime/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+
+# ==============================================================================
+# Python & Runtime Artifacts
+# ==============================================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyd
+*.log
+nul
+benchmark_results.json
+
+# ==============================================================================
+# .NET / C# / Visual Studio (JarvisDeck)
+# ==============================================================================
+bin/
+obj/
+.vs/
+*.user
+*.suo

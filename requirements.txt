@@ -1,0 +1,31 @@
+# Jarvis core
+fastapi>=0.115
+uvicorn[standard]>=0.30
+httpx>=0.27
+pydantic>=2.7
+
+# Voice pipeline (all local, all optional — system degrades gracefully per engine)
+sounddevice>=0.5
+openwakeword>=0.6          # wake word: ships a pretrained "hey jarvis" model
+onnxruntime-directml>=1.17; sys_platform == 'win32'  # DirectML GPU (AMD/Intel/NVIDIA) + Silero/Kokoro/Jarvis ONNX
+onnxruntime>=1.17; sys_platform != 'win32'           # silero VAD + openwakeword + kokoro
+moonshine-voice==0.1.6     # streaming STT (tiny/small/medium english models, ONNX)
+faster-whisper>=1.0        # STT fallback
+kokoro-onnx>=0.3           # TTS: kokoro-82M onnx voices
+piper-tts>=1.2             # TTS fallback
+numpy>=1.26
+soundfile>=0.12            # decoding voice-corpus audio
+pycaw==20260927            # Windows Core Audio endpoint enumeration (active devices only)
+
+# Jarvis voice clone (optional, heavy — pulls torch):
+#   pip install "coqui-tts[cpu,codec]==0.28.0" pyarrow "transformers<5" six
+#   python scripts/build_jarvis_voice.py
+# XTTS-v2 then clones the classic Jarvis voice from the HF corpus
+# derekurban2001/jarvis-voice-samples (personal/non-commercial use).
+
+# Breeze TTS 2 is NOT a pip package: it is the external
+# Breeze-TTS-2.cpp GGUF server (Vulkan/CPU). Optional — select it via
+# voice.tts_engine=breeze. Run once:
+#   python scripts/setup_breeze.py --quant q4_k
+# It downloads breeze-server + a GGUF model and points config.json at them.
+

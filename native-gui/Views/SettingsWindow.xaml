@@ -1,0 +1,281 @@
+<Window x:Class="JarvisDeck.Views.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Jarvis Settings" Height="780" Width="640"
+        WindowStartupLocation="CenterOwner"
+        Background="{StaticResource Bg}"
+        FontFamily="Segoe UI">
+  <Window.Resources>
+    <Style x:Key="SectionTitle" TargetType="TextBlock" BasedOn="{StaticResource Title}" />
+    <Style x:Key="FieldLabel" TargetType="TextBlock">
+      <Setter Property="Foreground" Value="{StaticResource Dim}" />
+      <Setter Property="FontSize" Value="11" />
+      <Setter Property="Margin" Value="0,10,0,4" />
+    </Style>
+  </Window.Resources>
+
+  <Grid Margin="14">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+
+    <TextBlock Text="SETTINGS" Style="{StaticResource SectionTitle}"
+               HorizontalAlignment="Center" Margin="0,0,0,8" />
+
+    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+      <StackPanel>
+
+        <Border Style="{StaticResource HudCard}">
+          <StackPanel>
+            <TextBlock Text="ASSISTANT" Style="{StaticResource SectionTitle}" />
+            <TextBlock Text="Name" Style="{StaticResource FieldLabel}" />
+            <TextBox x:Name="AssistantNameBox" Style="{StaticResource NeonInput}" />
+            <TextBlock Text="Persona" Style="{StaticResource FieldLabel}" />
+            <TextBox x:Name="AssistantPersonaBox" Style="{StaticResource NeonInput}"
+                     AcceptsReturn="True" TextWrapping="Wrap" Height="72" />
+          </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource HudCard}">
+          <StackPanel>
+            <TextBlock Text="PROVIDER" Style="{StaticResource SectionTitle}" />
+            <TextBlock Text="Preferred provider" Style="{StaticResource FieldLabel}" />
+            <ComboBox x:Name="ProviderDefaultBox" Style="{StaticResource NeonCombo}">
+              <ComboBoxItem Content="auto" />
+              <ComboBoxItem Content="lmstudio" />
+              <ComboBoxItem Content="dory" />
+            </ComboBox>
+            <TextBlock Text="LM Studio model" Style="{StaticResource FieldLabel}" />
+            <TextBox x:Name="LmsModelBox" Style="{StaticResource NeonInput}" />
+            <TextBlock Text="Dory model" Style="{StaticResource FieldLabel}" />
+            <TextBox x:Name="DoryModelBox" Style="{StaticResource NeonInput}" />
+          </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource HudCard}">
+          <StackPanel>
+            <TextBlock Text="VOICE" Style="{StaticResource SectionTitle}" />
+            <TextBlock Text="Activation mode" Style="{StaticResource FieldLabel}" />
+            <ComboBox x:Name="ActivationModeBox" Style="{StaticResource NeonCombo}">
+              <ComboBoxItem Content="wake" />
+              <ComboBoxItem Content="ptt" />
+              <ComboBoxItem Content="always" />
+              <ComboBoxItem Content="off" />
+              <ComboBoxItem Content="conversation" />
+              <ComboBoxItem Content="cached_conversation" />
+            </ComboBox>
+            <Grid Margin="0,10,0,0">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="*" />
+              </Grid.ColumnDefinitions>
+              <StackPanel>
+                <TextBlock Text="Conv. idle seconds" Style="{StaticResource FieldLabel}" />
+                <TextBox x:Name="ConvIdleBox" Style="{StaticResource NeonInput}" />
+              </StackPanel>
+              <StackPanel Grid.Column="2">
+                <TextBlock Text="Conv. exit phrases (comma-sep)" Style="{StaticResource FieldLabel}" />
+                <TextBox x:Name="ConvExitBox" Style="{StaticResource NeonInput}" />
+              </StackPanel>
+            </Grid>
+            <TextBlock Text="Wake word (blank = assistant name)" Style="{StaticResource FieldLabel}" />
+            <ComboBox x:Name="WakeWordBox" Style="{StaticResource NeonCombo}" IsEditable="True">
+              <ComboBoxItem Content="" />
+              <ComboBoxItem Content="hey jarvis" />
+              <ComboBoxItem Content="alexa" />
+              <ComboBoxItem Content="hey mycroft" />
+              <ComboBoxItem Content="hey rhasspy" />
+              <ComboBoxItem Content="timer" />
+              <ComboBoxItem Content="weather" />
+            </ComboBox>
+            <Grid Margin="0,10,0,0">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="*" />
+              </Grid.ColumnDefinitions>
+              <StackPanel>
+                <TextBlock Text="Wake threshold" Style="{StaticResource FieldLabel}" />
+                <TextBox x:Name="WakeThresholdBox" Style="{StaticResource NeonInput}" />
+              </StackPanel>
+              <StackPanel Grid.Column="2">
+                <TextBlock Text="VAD threshold" Style="{StaticResource FieldLabel}" />
+                <TextBox x:Name="VadThresholdBox" Style="{StaticResource NeonInput}" />
+              </StackPanel>
+            </Grid>
+            <TextBlock Text="Wake cooldown seconds" Style="{StaticResource FieldLabel}" />
+            <TextBox x:Name="WakeCooldownBox" Style="{StaticResource NeonInput}" />
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="*" />
+              </Grid.ColumnDefinitions>
+              <StackPanel>
+                <TextBlock Text="Silence end ms" Style="{StaticResource FieldLabel}" />
+                <TextBox x:Name="SilenceEndBox" Style="{StaticResource NeonInput}" />
+              </StackPanel>
+              <StackPanel Grid.Column="2">
+                <TextBlock Text="Min speech ms" Style="{StaticResource FieldLabel}" />
+                <TextBox x:Name="MinSpeechBox" Style="{StaticResource NeonInput}" />
+              </StackPanel>
+              <StackPanel Grid.Column="4">
+                <TextBlock Text="Max utterance ms" Style="{StaticResource FieldLabel}" />
+                <TextBox x:Name="MaxUtteranceBox" Style="{StaticResource NeonInput}" />
+              </StackPanel>
+            </Grid>
+            <TextBlock Text="STT engine / model" Style="{StaticResource FieldLabel}" />
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="*" />
+              </Grid.ColumnDefinitions>
+              <ComboBox x:Name="SttEngineBox" Style="{StaticResource NeonCombo}">
+                <ComboBoxItem Content="auto" />
+                <ComboBoxItem Content="faster-whisper" />
+                <ComboBoxItem Content="moonshine" />
+              </ComboBox>
+              <TextBox x:Name="SttModelBox" Grid.Column="2" Style="{StaticResource NeonInput}" />
+            </Grid>
+            <TextBlock Text="Moonshine model size" Style="{StaticResource FieldLabel}" />
+            <ComboBox x:Name="SttMoonshineBox" Style="{StaticResource NeonCombo}">
+              <ComboBoxItem Content="tiny" />
+              <ComboBoxItem Content="small" />
+              <ComboBoxItem Content="medium" />
+              <ComboBoxItem Content="base" />
+            </ComboBox>
+            <TextBlock Text="STT partial interval ms" Style="{StaticResource FieldLabel}" />
+            <TextBox x:Name="SttPartialBox" Style="{StaticResource NeonInput}" />
+            <TextBlock Text="TTS engine" Style="{StaticResource FieldLabel}" />
+            <ComboBox x:Name="TtsEngineBox" Style="{StaticResource NeonCombo}">
+              <ComboBoxItem Content="auto" />
+              <ComboBoxItem Content="jarvis_clone" />
+              <ComboBoxItem Content="jarvis_onnx" />
+              <ComboBoxItem Content="xtts" />
+              <ComboBoxItem Content="breeze" />
+              <ComboBoxItem Content="kokoro" />
+              <ComboBoxItem Content="piper" />
+              <ComboBoxItem Content="sapi" />
+            </ComboBox>
+            <CheckBox x:Name="CachedConvBox" Content="Cached conversation (reuse phrases/words)"
+                      Foreground="{StaticResource Text}" Margin="0,10,0,0" />
+            <Grid Margin="0,10,0,0">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="*" />
+              </Grid.ColumnDefinitions>
+              <StackPanel>
+                <TextBlock Text="TTS voice" Style="{StaticResource FieldLabel}" />
+                <TextBox x:Name="TtsVoiceBox" Style="{StaticResource NeonInput}" />
+              </StackPanel>
+              <StackPanel Grid.Column="2">
+                <TextBlock Text="TTS speed" Style="{StaticResource FieldLabel}" />
+                <TextBox x:Name="TtsSpeedBox" Style="{StaticResource NeonInput}" />
+              </StackPanel>
+            </Grid>
+            <TextBlock Text="Clone reference WAV" Style="{StaticResource FieldLabel}" />
+            <TextBox x:Name="TtsCloneRefBox" Style="{StaticResource NeonInput}" />
+            <TextBlock Text="Breeze server / model / voice" Style="{StaticResource FieldLabel}" />
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="*" />
+              </Grid.ColumnDefinitions>
+              <TextBox x:Name="BreezeServerBox" Grid.Column="0" Style="{StaticResource NeonInput}"
+                       ToolTip="Breeze TTS server URL (breeze-server)" />
+              <TextBox x:Name="BreezeModelBox" Grid.Column="2" Style="{StaticResource NeonInput}"
+                       ToolTip="Path to breeze-tts-2 GGUF model" />
+              <TextBox x:Name="BreezeVoiceBox" Grid.Column="4" Style="{StaticResource NeonInput}"
+                       ToolTip="Saved breeze voice id" />
+            </Grid>
+            <Grid Margin="0,10,0,0">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="*" />
+              </Grid.ColumnDefinitions>
+              <StackPanel>
+                <TextBlock Text="Input device" Style="{StaticResource FieldLabel}" />
+                <ComboBox x:Name="InputDeviceBox" Style="{StaticResource NeonCombo}" />
+              </StackPanel>
+              <StackPanel Grid.Column="2">
+                <TextBlock Text="Output device" Style="{StaticResource FieldLabel}" />
+                <ComboBox x:Name="OutputDeviceBox" Style="{StaticResource NeonCombo}" />
+              </StackPanel>
+            </Grid>
+            <Grid Margin="0,10,0,0">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="*" />
+              </Grid.ColumnDefinitions>
+              <CheckBox x:Name="EchoGuardBox" Content="Echo guard" Foreground="{StaticResource Text}"
+                        VerticalAlignment="Center" />
+              <StackPanel Grid.Column="2">
+                <TextBlock Text="Push-to-talk key" Style="{StaticResource FieldLabel}" Margin="0,0,0,4" />
+                <TextBox x:Name="PttKeyBox" Style="{StaticResource NeonInput}" />
+              </StackPanel>
+            </Grid>
+          </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource HudCard}">
+          <StackPanel>
+            <TextBlock Text="TASKS / CONSCIOUS" Style="{StaticResource SectionTitle}" />
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="*" />
+              </Grid.ColumnDefinitions>
+              <StackPanel>
+                <TextBlock Text="Max parallel" Style="{StaticResource FieldLabel}" />
+                <TextBox x:Name="MaxParallelBox" Style="{StaticResource NeonInput}" />
+              </StackPanel>
+              <StackPanel Grid.Column="2">
+                <TextBlock Text="Max steps" Style="{StaticResource FieldLabel}" />
+                <TextBox x:Name="MaxStepsBox" Style="{StaticResource NeonInput}" />
+              </StackPanel>
+              <StackPanel Grid.Column="4">
+                <TextBlock Text="History messages" Style="{StaticResource FieldLabel}" />
+                <TextBox x:Name="HistoryBox" Style="{StaticResource NeonInput}" />
+              </StackPanel>
+            </Grid>
+            <TextBlock Text="Response token budget" Style="{StaticResource FieldLabel}" />
+            <TextBox x:Name="TokenBudgetBox" Style="{StaticResource NeonInput}" />
+            <CheckBox x:Name="ConsciousReasoningBox"
+                      Content="Conscious reasoning (enable chain-of-thought for foreground Jarvis)"
+                      Foreground="{StaticResource Text}" Margin="0,10,0,0" />
+          </StackPanel>
+        </Border>
+
+      </StackPanel>
+    </ScrollViewer>
+
+    <Grid Grid.Row="2" Margin="0,10,0,0">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="Auto" />
+      </Grid.ColumnDefinitions>
+      <TextBlock x:Name="StatusText" Text="" Foreground="{StaticResource Dim}"
+                 VerticalAlignment="Center" />
+      <Button x:Name="SaveButton" Grid.Column="1" Content="SAVE" Style="{StaticResource NeonBtnMagenta}"
+              Margin="8,0,0,0" Click="OnSave" />
+      <Button Grid.Column="2" Content="CANCEL" Style="{StaticResource NeonBtn}"
+              Margin="8,0,0,0" Click="OnCancel" />
+    </Grid>
+  </Grid>
+</Window>

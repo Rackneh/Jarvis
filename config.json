@@ -1,0 +1,80 @@
+{
+  "assistant": {
+    "name": "Jarvis",
+    "persona": "You are Jarvis, a calm, precise, proactive AI assistant. Speak concisely by default; expand only when asked or when a task demands detail.",
+    "first_run": true
+  },
+  "backend": {
+    "port": 8010,
+    "home_dir": ""
+  },
+  "providers": {
+    "default": "lmstudio",
+    "dory": {
+      "base_url": "http://127.0.0.1:8080/v1",
+      "model": "dory",
+      "api_key": "dory-a5118c2b008b1ebe80793733a7aa48ee"
+    },
+    "lmstudio": {
+      "base_url": "http://127.0.0.1:1234/v1",
+      "model": "gemma-4-e4b-uncensored-hauhaucs-aggressive",
+      "api_key": "sk-lm-AyBLzEEz:AklHEcXU6IfgMOgoSUp1"
+    },
+    "dory_gui_url": "http://127.0.0.1:5000"
+  },
+  "voice": {
+    "activation_mode": "conversation",
+    "conversation_idle_seconds": 60.0,
+    "conversation_exit_phrases": "goodbye,bye,that's all,thats all,never mind,nevermind,i'm done,im done,that's it,thats it,go to sleep,end conversation",
+    "wake_word": "",
+    "wake_threshold": 0.5,
+    "wake_cooldown_seconds": 2.0,
+    "stt_engine": "moonshine",
+    "stt_model": "auto",
+    "stt_moonshine_size": "medium",
+    "stt_partial_interval_ms": 350,
+    "vad_threshold": 0.45,
+    "silence_end_ms": 850,
+    "min_speech_ms": 360,
+    "max_utterance_ms": 60000,
+    "tts_engine": "jarvis_clone",
+    "tts_voice": "am_michael",
+    "tts_speed": 1.0,
+    "tts_clone_reference": "jarvis_home/models/voice/reference.wav",
+    "tts_gpu": true,
+    "jarvis_clone_quality": "high",
+    "cached_conversation": false,
+    "breeze_server_url": "http://127.0.0.1:8137",
+    "breeze_server_exe": "C:\\Users\\Rackneh\\Documents\\Github\\Repositories\\Rackneh's Jarvis\\jarvis_home\\models\\breeze\\bin\\breeze-server.exe",
+    "breeze_model": "C:\\Users\\Rackneh\\Documents\\Github\\Repositories\\Rackneh's Jarvis\\jarvis_home\\models\\breeze\\breeze-tts-2-q4_k.gguf",
+    "breeze_voices_dir": "C:\\Users\\Rackneh\\Documents\\Github\\Repositories\\Rackneh's Jarvis\\jarvis_home\\models\\breeze\\voices",
+    "breeze_voice_id": "jarvis",
+    "breeze_ref_audio": "jarvis_home/models/voice/breeze_reference.wav",
+    "breeze_ref_text": "",
+    "breeze_instruction": "",
+    "breeze_cfg_scale": 1.0,
+    "breeze_seed": 42,
+    "breeze_auto_start": true,
+    "breeze_startup_timeout": 180,
+    "breeze_retry_seconds": 30,
+    "breeze_cpu": false,
+    "breeze_te_cpu": true,
+    "breeze_parallel": 1,
+    "echo_guard": true,
+    "push_to_talk_key": "F2",
+    "input_device": 1,
+    "output_device": 3
+  },
+  "tasks": {
+    "max_parallel": 2,
+    "max_steps_default": 200,
+    "step_token_budget": 6144,
+    "ask_user_timeout_hours": 12,
+    "workspace_root": ""
+  },
+  "conscious": {
+    "history_messages": 16,
+    "response_token_budget": 8192,
+    "reasoning_enabled": false
+  }
+}
